@@ -2,10 +2,237 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>mikow.dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dax — Game Developer</title>
+    <meta name="description" content="Portfolio of Dax, a game developer. Shipped projects, technical breakdowns and contact details.">
+    <meta property="og:title" content="Dax — Game Developer">
+    <meta property="og:description" content="Shipped projects, technical breakdowns and contact details.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mikow.dev/">
+    <!-- <meta property="og:image" content="https://mikow.dev/assets/img/social-card.jpg"> -->
+    <meta name="color-scheme" content="dark light">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d0f13'/%3E%3Cpath d='M9 10l7 6-7 6' fill='none' stroke='%236ee7b0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 22h6' stroke='%236ee7b0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>Hi. I'm dax. I'll put my professional portfolio here later!</h1>
-<a href="https://relaxitsdax.dev">check out my homepage.</a>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+    <div class="container">
+        <a class="brand" href="#top"><span>&gt;</span> dax</a>
+        <nav class="nav" aria-label="Primary">
+            <a href="#work">Work</a>
+            <a href="#skills" class="nav-optional">Skills</a>
+            <a href="#experience" class="nav-optional">Experience</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <!-- Add your résumé at assets/resume.pdf -->
+            <a class="btn btn-small" href="assets/resume.pdf">Résumé</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+        <div class="container">
+            <!-- Your discipline: Gameplay Programmer, Technical Artist, Level Designer… -->
+            <p class="eyebrow">Gameplay Programmer</p>
+            <h1>Hi, I'm Dax. I build game systems that feel good to play.</h1>
+            <p class="lead">
+                One or two sentences on what you do best and what you're looking for —
+                the kind of games you make, the problems you like, and the role you want next.
+            </p>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="#work">See my work</a>
+                <a class="btn" href="#contact">Get in touch</a>
+            </div>
+
+            <dl class="facts">
+                <div><dt>Focus</dt><dd>Gameplay &amp; systems</dd></div>
+                <div><dt>Engines</dt><dd>Unreal, Unity, Godot</dd></div>
+                <div><dt>Languages</dt><dd>C++, C#</dd></div>
+                <div><dt>Status</dt><dd>Open to work</dd></div>
+            </dl>
+        </div>
+    </section>
+
+    <!-- ============ SHOWREEL ============ -->
+    <section class="section" id="reel">
+        <div class="container">
+            <div class="section-head">
+                <p class="eyebrow">Showreel</p>
+                <h2>Sixty seconds of the best bits</h2>
+            </div>
+            <!--
+                Replace the placeholder below with your reel, e.g.
+                <div class="frame">
+                    <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Showreel" loading="lazy"
+                            allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+                </div>
+                No reel yet? Delete this whole section.
+            -->
+            <div class="frame frame-placeholder">Showreel goes here</div>
+        </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="work">
+        <div class="container">
+            <div class="section-head">
+                <p class="eyebrow">Selected work</p>
+                <h2>Projects</h2>
+                <p>Each one has a short write-up of what I built and how. Filter by discipline.</p>
+            </div>
+            <!-- Cards and filters are generated from js/projects.js -->
+            <div class="filters" id="project-filters" role="group" aria-label="Filter projects"></div>
+            <div class="project-grid" id="project-grid"></div>
+            <noscript><p class="muted">Enable JavaScript to see the project list.</p></noscript>
+        </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-head">
+                <p class="eyebrow">Toolbox</p>
+                <h2>Skills</h2>
+            </div>
+            <div class="skill-grid">
+                <div class="skill-group">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>C++</li>
+                        <li>C#</li>
+                        <li>GDScript</li>
+                        <li>HLSL / GLSL</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Engines</h3>
+                    <ul>
+                        <li>Unreal Engine 5</li>
+                        <li>Unity</li>
+                        <li>Godot 4</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Disciplines</h3>
+                    <ul>
+                        <li>Gameplay systems</li>
+                        <li>AI &amp; behaviour</li>
+                        <li>Editor tooling</li>
+                        <li>Profiling &amp; optimisation</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h3>Workflow</h3>
+                    <ul>
+                        <li>Git / Perforce</li>
+                        <li>Jira</li>
+                        <li>CI builds</li>
+                        <li>Blender</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="section-head">
+                <p class="eyebrow">Background</p>
+                <h2>Experience</h2>
+            </div>
+            <div class="timeline">
+                <article class="role">
+                    <div class="role-when">2025 — Present</div>
+                    <div>
+                        <h3>Job Title</h3>
+                        <p class="role-where">Studio Name · Location / Remote</p>
+                        <ul class="bullets">
+                            <li>What you owned, in one line.</li>
+                            <li>An outcome with a number attached, if you have one.</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="role">
+                    <div class="role-when">2023 — 2025</div>
+                    <div>
+                        <h3>Previous Job Title</h3>
+                        <p class="role-where">Studio Name · Location / Remote</p>
+                        <ul class="bullets">
+                            <li>What you owned, in one line.</li>
+                            <li>What shipped because of it.</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="role">
+                    <div class="role-when">2019 — 2023</div>
+                    <div>
+                        <h3>Degree or Course</h3>
+                        <p class="role-where">University or School</p>
+                        <ul class="bullets">
+                            <li>Relevant modules, a capstone project, or an award.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-head">
+                <p class="eyebrow">About</p>
+                <h2>A bit about me</h2>
+            </div>
+            <div class="about">
+                <!-- Replace with: <div class="frame about-photo"><img src="assets/img/me.jpg" alt="Dax"></div> -->
+                <div class="frame frame-placeholder about-photo">Photo</div>
+                <div class="about-text">
+                    <p>
+                        A short paragraph in your own voice: how you got into games, what you care about
+                        when you build them, and the kind of team you do your best work on.
+                    </p>
+                    <p>
+                        A second paragraph for anything beyond the job — the games that shaped you,
+                        jams you run, talks you've given, what you're learning right now.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <p class="eyebrow">Contact</p>
+            <h2>Let's make something together.</h2>
+            <a class="contact-email" href="mailto:you@example.com">you@example.com</a>
+            <div class="btn-row">
+                <a class="btn" href="https://github.com/RelaxItsDax" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn" href="#">itch.io</a>
+                <a class="btn" href="#">LinkedIn</a>
+                <a class="btn" href="https://relaxitsdax.dev">Homepage</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <span>© <span id="year">2026</span> Dax</span>
+        <a href="#top">Back to top ↑</a>
+    </div>
+</footer>
+
+<script src="js/projects.js"></script>
+<script src="js/main.js"></script>
+<script src="js/background.js"></script>
 </body>
 </html>
