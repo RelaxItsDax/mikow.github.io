@@ -4,14 +4,14 @@
    ========================================================================== */
 
 :root {
-    --bg: #0d0f13;
-    --surface: #151920;
-    --surface-2: #1c212a;
-    --border: #272d38;
-    --text: #e8eaef;
-    --muted: #97a0b0;
-    --accent: #6ee7b0;
-    --accent-ink: #06130d; /* text on top of the accent colour */
+    --bg: #070c15;
+    --surface: #0d1622;
+    --surface-2: #132030;
+    --border: #1e3146;
+    --text: #e6eef5;
+    --muted: #8fa4ba;
+    --accent: #3dd6e0;
+    --accent-ink: #04161a; /* text on top of the accent colour */
 
     --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "JetBrains Mono", "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
@@ -23,13 +23,13 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --bg: #f7f8fa;
+        --bg: #f4f8fc;
         --surface: #ffffff;
-        --surface-2: #eef0f4;
-        --border: #dcdfe6;
-        --text: #14171c;
-        --muted: #5b6472;
-        --accent: #0b8f5a;
+        --surface-2: #e8f0f7;
+        --border: #d2dfea;
+        --text: #0f1a24;
+        --muted: #52657a;
+        --accent: #0b7f96;
         --accent-ink: #ffffff;
     }
 }
@@ -187,7 +187,7 @@ a { color: inherit; }
 
 /* Generated cover used when a project has no image yet. Colour comes from --hue. */
 .cover {
-    --hue: 160;
+    --hue: 190;
     position: relative; aspect-ratio: 16 / 9; overflow: hidden;
     display: grid; place-items: center;
     background:
@@ -311,9 +311,33 @@ a { color: inherit; }
     .project-aside { order: -1; }
 }
 
-.project-content { display: grid; gap: 2.75rem; min-width: 0; }
-.project-content h2 { font-size: 1.4rem; margin-bottom: 0.9rem; }
-.project-content p { color: var(--muted); max-width: 44rem; }
+/* The write-up, rendered from the Markdown in projects/<slug>.md */
+.project-content { min-width: 0; }
+.project-content > :first-child { margin-top: 0; }
+.project-content > :last-child { margin-bottom: 0; }
+.project-content h2 { font-size: 1.4rem; margin: 2.75rem 0 0.9rem; }
+.project-content h3 { font-size: 1.1rem; margin: 2.25rem 0 0.9rem; }
+.project-content p, .project-content li { color: var(--muted); max-width: 44rem; }
+.project-content strong { color: var(--text); }
+.project-content a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.project-content ul, .project-content ol { display: grid; gap: 0.45rem; margin: 0 0 1rem; }
+.project-content li > ul, .project-content li > ol { margin: 0.45rem 0 0; }
+.project-content ul > li { position: relative; padding-left: 1.25rem; }
+.project-content ul > li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 0.5rem; height: 1px; background: var(--accent); }
+.project-content ol { padding-left: 1.25rem; }
+.project-content img, .project-content video, .project-content iframe {
+    margin-block: 1.5rem; border: 1px solid var(--border); border-radius: var(--radius);
+}
+.project-content pre { margin-block: 1.5rem; }
+.project-content :not(pre) > code {
+    padding: 0.1em 0.35em; border-radius: 4px; background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 0.88em;
+}
+.project-content blockquote { margin: 1.5rem 0; padding-left: 1.1rem; border-left: 2px solid var(--accent); }
+.project-content hr { margin-block: 2.75rem; border: 0; border-top: 1px solid var(--border); }
+.project-content table { display: block; overflow-x: auto; margin-block: 1.5rem; border-collapse: collapse; font-size: 0.93rem; }
+.project-content th, .project-content td { padding: 0.5rem 0.85rem; border: 1px solid var(--border); text-align: left; }
+.project-content th { background: var(--surface); }
 
 .project-aside {
     position: sticky; top: 5rem;
@@ -330,12 +354,6 @@ a { color: inherit; }
 }
 .project-aside dd { margin: 0.15rem 0 0; font-weight: 600; }
 .project-aside .chips { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
-
-.breakdown { display: grid; gap: 1rem; }
-.breakdown + .breakdown { margin-top: 2.25rem; }
-.breakdown h3 { font-size: 1.1rem; }
-.breakdown p { margin: 0; }
-.breakdown img { border: 1px solid var(--border); border-radius: var(--radius); }
 
 pre {
     margin: 0; padding: 1.1rem 1.25rem; overflow-x: auto;

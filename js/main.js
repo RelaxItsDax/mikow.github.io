@@ -1,9 +1,11 @@
 (function () {
     "use strict";
 
-    var projects = window.PROJECTS || [];
+    var slugs = window.PROJECTS || [];
+    var projects = [];
 
-    // Tiny DOM builder. Text always goes in as text nodes, never as HTML.
+    // Tiny DOM builder. Text always goes in as text nodes, never as HTML
+    // (the Markdown write-up in markdown() is the one exception).
     function el(tag, attrs) {
         var node = document.createElement(tag);
         Object.keys(attrs || {}).forEach(function (key) {
@@ -30,7 +32,7 @@
     }
 
     function cover(project) {
-        var node = el("div", { class: "cover", style: "--hue: " + (project.hue == null ? 160 : project.hue) });
+        var node = el("div", { class: "cover", style: "--hue: " + (project.hue == null ? 190 : project.hue) });
         if (project.cover) {
             node.appendChild(el("img", { src: project.cover, alt: "", loading: "lazy" }));
         } else {
@@ -47,6 +49,73 @@
 
     function isExternal(url) {
         return /^https?:\/\//.test(url);
+    }
+
+    // ---------- Loading projects/<slug>.md ----------
+
+    function unquote(value) {
+        var quoted = /^(["'])(.*)\1$/.exec(value);
+        return quoted ? quoted[2].replace(/\\(["'])/g, "$1") : value;
+    }
+
+    // Reads the "key: value" block between the two "---" lines at the top of a
+    // project file. A key with nothing after it collects the "- item" lines below.
+    function parseProject(slug, text) {
+        var project = { slug: slug, title: slug, tagline: "", body: text };
+        var header = /^\uFEFF?---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(\r?\n|$)/.exec(text);
+        if (!header) return project;
+        project.body = text.slice(header[0].length);
+
+        var fields = {};
+        var key = null;
+        header[1].split(/\r?\n/).forEach(function (line) {
+            var item = /^\s*-\s+(.*)$/.exec(line);
+            if (item) {
+                if (Array.isArray(fields[key])) fields[key].push(item[1].trim());
+                return;
+            }
+            var pair = /^([A-Za-z][\w-]*):\s*(.*)$/.exec(line);
+            if (!pair) return;
+            key = pair[1];
+            fields[key] = pair[2].trim() === "" ? [] : unquote(pair[2].trim());
+        });
+
+        ["title", "tagline", "year", "role", "team", "duration", "engine", "platforms", "cover"].forEach(function (name) {
+            if (typeof fields[name] === "string") project[name] = fields[name];
+        });
+        project.featured = fields.featured === "true";
+        if (fields.hue != null && !isNaN(Number(fields.hue))) project.hue = Number(fields.hue);
+        if (typeof fields.youtube === "string") project.video = { youtube: fields.youtube };
+        else if (typeof fields.video === "string") project.video = { src: fields.video };
+
+        var tags = fields.tags || [];
+        if (typeof tags === "string") tags = tags.replace(/^\[|\]$/g, "").split(",");
+        project.tags = tags.map(function (tag) { return unquote(tag.trim()); }).filter(Boolean);
+
+        project.links = (Array.isArray(fields.links) ? fields.links : []).map(function (entry) {
+            var split = entry.lastIndexOf(": ");
+            if (split === -1) return null;
+            return { label: unquote(entry.slice(0, split).trim()), url: unquote(entry.slice(split + 2).trim()) };
+        }).filter(Boolean);
+
+        return project;
+    }
+
+    // A file that fails to load is left out rather than breaking the page.
+    function loadProjects() {
+        return Promise.all(slugs.map(function (slug) {
+            var url = "projects/" + encodeURIComponent(slug) + ".md";
+            return fetch(url)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("HTTP " + response.status);
+                    return response.text();
+                })
+                .then(function (text) { return parseProject(slug, text); })
+                .catch(function (error) {
+                    console.error("Project could not be loaded: " + url, error);
+                    return null;
+                });
+        })).then(function (loaded) { return loaded.filter(Boolean); });
     }
 
     // ---------- Home page: project grid + filters ----------
@@ -114,8 +183,20 @@
         return cover(project);
     }
 
-    function paragraphs(parent, items) {
-        (items || []).forEach(function (text) { parent.appendChild(el("p", { text: text })); });
+    // The write-up, rendered with js/vendor/marked.min.js.
+    function markdown(text) {
+        var node = el("div", { class: "project-content" });
+        if (!window.marked) {
+            node.appendChild(el("pre", { text: text }));
+            return node;
+        }
+        node.innerHTML = window.marked.parse(text);
+        node.querySelectorAll("a[href]").forEach(function (link) {
+            if (!isExternal(link.getAttribute("href"))) return;
+            link.target = "_blank";
+            link.rel = "noopener";
+        });
+        return node;
     }
 
     function renderProject(root) {
@@ -155,31 +236,7 @@
 
         root.appendChild(el("div", { class: "project-media" }, media(project)));
 
-        var content = el("div", { class: "project-content" });
-
-        if (project.overview && project.overview.length) {
-            var overview = el("section", {}, el("h2", { text: "Overview" }));
-            paragraphs(overview, project.overview);
-            content.appendChild(overview);
-        }
-
-        if (project.contributions && project.contributions.length) {
-            var list = el("ul", { class: "bullets" });
-            project.contributions.forEach(function (item) { list.appendChild(el("li", { text: item })); });
-            content.appendChild(el("section", {}, el("h2", { text: "What I did" }), list));
-        }
-
-        if (project.breakdowns && project.breakdowns.length) {
-            var section = el("section", {}, el("h2", { text: "Technical breakdown" }));
-            project.breakdowns.forEach(function (item) {
-                var block = el("div", { class: "breakdown" }, el("h3", { text: item.title }));
-                paragraphs(block, item.body);
-                if (item.image) block.appendChild(el("img", { src: item.image, alt: item.title, loading: "lazy" }));
-                if (item.code) block.appendChild(el("pre", {}, el("code", { text: item.code })));
-                section.appendChild(block);
-            });
-            content.appendChild(section);
-        }
+        var content = markdown(project.body);
 
         var facts = el("dl", {});
         [["Role", project.role], ["Team", project.team], ["Duration", project.duration],
@@ -208,10 +265,14 @@
     // ---------- Boot ----------
 
     var grid = document.getElementById("project-grid");
-    if (grid) renderGrid(grid, document.getElementById("project-filters"));
-
     var projectRoot = document.getElementById("project");
-    if (projectRoot) renderProject(projectRoot);
+    if (grid || projectRoot) {
+        loadProjects().then(function (loaded) {
+            projects = loaded;
+            if (grid) renderGrid(grid, document.getElementById("project-filters"));
+            if (projectRoot) renderProject(projectRoot);
+        });
+    }
 
     var year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
