@@ -215,5 +215,5 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
         color += rectColor * rect * pos.z/maxSize;
     }
 
-    fragColor = color * 0.3;
+    fragColor = color * 0.25;
 }
