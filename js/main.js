@@ -86,6 +86,7 @@
         project.featured = fields.featured === "true";
         if (fields.hue != null && !isNaN(Number(fields.hue))) project.hue = Number(fields.hue);
         if (typeof fields.youtube === "string") project.video = { youtube: fields.youtube };
+        else if (typeof fields.vimeo === "string") project.video = { vimeo: fields.vimeo };
         else if (typeof fields.video === "string") project.video = { src: fields.video };
 
         var tags = fields.tags || [];
@@ -174,6 +175,24 @@
                     allowfullscreen: true
                 })
             );
+        }
+        // Takes a bare ID ("76979871") or a share link; an unlisted video's link
+        // carries a privacy hash ("vimeo.com/76979871/abc123") that the player needs.
+        if (video && video.vimeo) {
+            var query = /[?&]h=([0-9a-f]+)/i.exec(video.vimeo);
+            var vimeo = /(\d+)(?:\/([0-9a-f]+))?\/?$/i.exec(video.vimeo.split(/[?#]/)[0]);
+            if (vimeo) {
+                var hash = vimeo[2] || (query && query[1]);
+                return el("div", { class: "frame" },
+                    el("iframe", {
+                        src: "https://player.vimeo.com/video/" + vimeo[1] + "?dnt=1" + (hash ? "&h=" + hash : ""),
+                        title: project.title + " video",
+                        loading: "lazy",
+                        allow: "autoplay; fullscreen; picture-in-picture",
+                        allowfullscreen: true
+                    })
+                );
+            }
         }
         if (video && video.src) {
             return el("div", { class: "frame" },
