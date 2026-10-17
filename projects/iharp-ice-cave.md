@@ -16,8 +16,19 @@ links:
 
 ## Overview
 
-Yeah bro I made this shit.
+The Polar Ice Museum was a museum installation developed by the IRC to show the effects of climate change in a meaningful public engagement experience. It focused primarily on how changes in polar ice caves in Greenland are related to places you might not expect, highlighting south Baltimore as an affected area.
+
+The installation consisted of an ice cave scene spread across a wall of monitors, particle systems representing carbon floating through the cave. There was a hanging plate with a relief of a store in south Baltimore with ink that you could blow on, stirring it and revealing the relief below once it settled. Sensors would detect your breath, and correspond to changes in the ice cave.
+
+There was also a VR component where participants could explore the ice cave, and take a climate quiz. The more you answered with responses that favored climate change, the more water would rise in the cave around you.
 
 ## What I did
 
-- What did I do?
+I contributed mostly tangentially to this project. I helped primarily with UI/UX reviews, giving analysis of different features users could interact with, especially pertaining to the quiz. 
+
+I also created some of the animated components in the quiz itself, making smooth, procedural animations that transitioned states on the interactable menu.
+
+## Takeaways
+
+This project was helpful to me as I got to watch it iterate through development. Given that I only stepped in towards the end, I was really only able to watch it develop. Still, seeing the design process and iterations it went through was very interesting, especially how the artistic focus and design shifted.
+
