@@ -39,7 +39,7 @@ DeepStar was originally created and rendered with Unity. Given that I had some e
 
 ## Bringing it into AR
 
-![A visitor viewing DeepStar in Augmented Reality](/home/dax/WebstormProjects/mikow.github.io/assets/img/deepstar/deepstar-exhibit.jpg)
+![A visitor viewing DeepStar in Augmented Reality](assets/img/deepstar/deepstar-exhibit.jpg)
 
 With the assets in hand, I brought them into modern Unity, and converted the assets to the pipeline I was using. 
 

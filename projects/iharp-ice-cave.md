@@ -10,6 +10,7 @@ platforms: "Museum Exhibit."
 tags: Unreal, IRC
 featured: false
 cover: assets/img/ice-cave/ice-cave-cover.jpg
+vimeo: https://vimeo.com/1198899924
 hue: 190
 links:
   - Documentation: "https://irc.umbc.edu/virtual-ice-museum/"
