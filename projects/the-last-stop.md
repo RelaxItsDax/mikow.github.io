@@ -16,24 +16,24 @@ links:
 
 ## Overview
 
-The Last Stop is a narrative focused puzzle game focused on blending an immersive atmosphere with thought-provoking puzzles and dynamic storytelling. It's the first truly successful long term project I've worked on.
+The Last Stop is a **narrative focused puzzle game** focused on blending an immersive atmosphere with thought-provoking puzzles and dynamic storytelling. It's **the first truly successful long term project I've worked on**.
 
-It was made over 6 months and a semester. We started it over winter break in December of 2025, and it ran until around May of 2026. The project itself had 15 unique people working on it, all in different diciplines.
+It was made over 6 months, in the Spring 2026 semester. We started it over winter break in December of 2025, and it ran until around May of 2026. The project itself had **15 unique people working on it**, all in different diciplines.
 
 ## What I did
 
-I was the lead programmer, a gameplay engineer, and a graphics developer for this project.
+I was the **lead programmer**, a gameplay engineer, and a graphics developer for this project.
 
 ### Gameplay
 I created:
+- The **puzzle system in its entirety**.
+    - The table for the puzzle system, and how you interact with it.
+    - The tiles that can be placed on the track.
+    - An editor-only tool to create puzzles.
 - The player setup, allowing movement, looking, etc.
 - The interaction system.
 - The inventory system. 
 - The console system used in development
-- The puzzle system in its entirety.
-  - The table for the puzzle system, and how you interact with it.
-  - The tiles that can be placed on the track.
-  - An editor-only tool to create puzzles.
   
 ### Graphics:
 - The water shader used for the ocean and pond on the island.
@@ -57,12 +57,12 @@ We did a two-week sprint, focusing on the feedback we got. One piece of feedback
 
 We fixed some critical bugs, and playtested the game again at the IGDA student capstone project showcase. at that event, **we tied for first place in their competition**, proving that we had made something incredible. It should also be noted we presented TLS their despite not being a capstone project...
 
-After that event, we had so much positive feedback, but a few more things to fix. We decided to do one last sprint, and rounded off development by showcasing our finished project at the UMBC Game Dev Club End of Year Showcase. At that event, we had a really incredible, polished project. We were all burnt out and done afterward, so that showcase was our last stop. 
+After that event, we had so much positive feedback, but a few more things to fix. We decided to do one last sprint to fix bugs, and rounded off development by showcasing our finished project at the UMBC Game Dev Club End of Year Showcase. At that event, we had a **really incredible, polished project**. We were all burnt out and done afterward, so that showcase was our last stop. 
 
 ## Takeaways from TLS
 
-The history of The Last Stop is why I consider this project to be one of the best ones I've done. It really shows off how we used good project management, tracking, and a sprint cycle to both build a minimum viable product and iterate on it until we had a complete 30 minutes of gameplay.
+The history of The Last Stop is why I consider this project to be one of the best ones I've done. It really shows off how **we used good project management, tracking, and a sprint cycle** to both build a minimum viable product and iterate on it until we had a **complete 30 minutes of gameplay**.
 
 I learned so much about project management, graphics, team coordination, and gameplay programming from it. It truly was an incredible experience.
 
-Casey, the project lead, has gone on to start a small business and work on another game with many people from the original project. I'm so glad that I was there when it was all starting, and it's incredible to see our work on TLS result in a business venture and other games.
+Casey, the project lead, has **gone on to start a small business** and work on another game with many people from the original project. I'm so glad that I was there when it was all starting, and it's incredible to see our work on TLS result in a business venture and other games.

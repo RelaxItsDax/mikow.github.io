@@ -18,7 +18,7 @@ links:
 
 DeepStar AR is a reimagining of Lisa Moren's Deep Star exhibit in augmented reality. I ported the previously video installation to augmented reality during my time working at the Imaging Research Center at UMBC.
 
-The project itself is a museum piece showcasing how visualizations can reflect changing conditions in the Chesapeake bay. It was shown in the [CADVC art gallery at UMBC](https://cadvc.umbc.edu/exhibition/2026-cadvc-arts-faculty-exhibition-curated-by-maleke-glee/) from February 4th to 28th 2026.
+The project itself is a museum piece showcasing how visualizations can reflect changing conditions in the Chesapeake bay. **Our work was shown in the [CADVC art gallery at UMBC](https://cadvc.umbc.edu/exhibition/2026-cadvc-arts-faculty-exhibition-curated-by-maleke-glee/) from February 4th to 28th 2026**.
 
 ## The Imaging Research Center
 
@@ -28,7 +28,7 @@ The [Imaging Research Center](https://irc.umbc.edu/) focuses on utilizing modern
 
 **"At the IRC, we believe large problems are solved at the intersection of the arts, sciences and humanities working together."**
 
-I did an internship/job as a software engineer there for a year.
+I did an **internship/job as a software engineer there for a year**.
 
 ## DeepStar History
 
@@ -54,6 +54,6 @@ To be perfectly honest, I underestimated how difficult collaborating with stakeh
 
 ## Takeaways
 
-This project was really interesting for me because I learned a lot about technologies I had previously only dreamed of. This project is what got me started learning technical art, which is now one of my strong suits. I never thought I'd see the day where I'd be writing shaders and particle systems, but here we are! It all started with this project.
+This project was really interesting for me because I learned a lot about technologies I had previously only dreamed of. This project is **what got me started learning technical art**, which is now one of my strong suits. I never thought I'd see the day when I'd be writing shaders and particle systems, but here we are! It all started with this project.
 
-In addition, getting to use AR like that was a really incredible experience. It changed the way I think about game development, and how different mediums can drastically change how you take in a story, narrative, or message.
+In addition, getting to use AR like that was a really incredible experience. It **changed the way I think about game development**, and how different mediums can drastically change how you take in a story, narrative, or message.
