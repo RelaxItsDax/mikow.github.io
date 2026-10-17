@@ -10,6 +10,7 @@ platforms: "Windows, Linux"
 tags: Gameplay, Graphics, Unity, Game Jam
 featured: false
 cover: assets/img/otwe/otwe-cover.png
+youtube: xxU355p8Bfg
 hue: 140
 links:
   - itch.io: "https://relaxitsdax.itch.io/on-the-waters-edge",
