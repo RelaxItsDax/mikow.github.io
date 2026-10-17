@@ -10,6 +10,7 @@ platforms: "Windows, Mac, Browser"
 tags: Gameplay, Unity, Game Jam
 featured: false
 cover: assets/img/danger/danger-ice-skater-cover.png
+youtube: IJy6vLX3uR4
 hue: 170
 links:
   - itch.io: "https://evanmcrae.itch.io/danger-ice-skater"

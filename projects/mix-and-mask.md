@@ -11,6 +11,7 @@ tags: Gameplay, Graphics, Unity, Game Jam
 featured: false
 hue: -10
 cover: assets/img/mix-and-mask/mix-cover.png
+youtube: cV2wMmK4Tpk
 links:
   - itch.io: "https://evanmcrae.itch.io/mix-and-mask"
   - Source: "https://github.com/EvanMcRae/Mix-and-Mask"
