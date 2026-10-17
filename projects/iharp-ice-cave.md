@@ -9,6 +9,7 @@ engine: Unreal Engine 5
 platforms: "Museum Exhibit."
 tags: Unreal, IRC
 featured: false
+cover: assets/img/ice-cave/ice-cave-cover.jpg
 hue: 190
 links:
   - Documentation: "https://irc.umbc.edu/virtual-ice-museum/"
@@ -21,6 +22,8 @@ The Polar Ice Museum was a museum installation developed by the IRC to show the 
 The installation consisted of an ice cave scene spread across a wall of monitors, particle systems representing carbon floating through the cave. There was a hanging plate with a relief of a store in south Baltimore with ink that you could blow on, stirring it and revealing the relief below once it settled. Sensors would detect your breath, and correspond to changes in the ice cave.
 
 There was also a VR component where participants could explore the ice cave, and take a climate quiz. The more you answered with responses that favored climate change, the more water would rise in the cave around you.
+
+![Particles in the Polar Ice Cave](assets/img/ice-cave/ice-cave-particles.png)
 
 ## What I did
 

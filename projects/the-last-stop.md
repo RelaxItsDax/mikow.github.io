@@ -9,6 +9,7 @@ engine: Unity
 platforms: "Windows, Linux"
 tags: Gameplay, Graphics, Unity
 featured: true
+cover: assets/img/tls/the-last-stop-cover.png
 hue: 270
 links:
   - itch.io: "https://edenemil.itch.io/the-last-stop"
@@ -24,8 +25,9 @@ It was made over 6 months, in the Spring 2026 semester. We started it over winte
 
 I was the **lead programmer**, a gameplay engineer, and a graphics developer for this project.
 
-### Gameplay
 I created:
+### Gameplay
+![The Last Stop's Puzzle System](assets/img/tls/tls-puzzle.png)
 - The **puzzle system in its entirety**.
     - The table for the puzzle system, and how you interact with it.
     - The tiles that can be placed on the track.
@@ -36,6 +38,7 @@ I created:
 - The console system used in development
   
 ### Graphics:
+![The Last Stop's Environment, showing off graphics](assets/img/tls/tls-scene.png)
 - The water shader used for the ocean and pond on the island.
 - The cloud shader.
 - The skybox shader.
@@ -53,7 +56,9 @@ As progress continued, we realized we were focusing a lot more on the narrative 
 
 Once we were done, we playtested the game at the UMBC Game Developers Club's Digital Entertainment Conference, an event with an opportunity to show off student games. The feedback we got from that event showed us that we had something really rough around the edges, but could be made good. Before DEC, we had resolved to end development there. After DEC, we all agreed to do another sprint, wanting to see the project be truly good.
 
-We did a two-week sprint, focusing on the feedback we got. One piece of feedback we recieved is that the game felt very flat and muted. We intially wanted to create a dark and gloomy atmosphere, but we decided to lean more into a brighter aesthetic, making nearly every important gameplay element glow. 
+![A fireplace in The Last Stop, showing off our glow and warm aesthetic.](assets/img/tls/tls-fireplace.png)
+
+We did a two-week sprint, focusing on the feedback we got. One piece of feedback we recieved is that the game felt very flat and muted. We intially wanted to create a dark and gloomy atmosphere, but we decided to lean more into a brighter aesthetic, making nearly every important gameplay element glow.
 
 We fixed some critical bugs, and playtested the game again at the IGDA student capstone project showcase. at that event, **we tied for first place in their competition**, proving that we had made something incredible. It should also be noted we presented TLS their despite not being a capstone project...
 

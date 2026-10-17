@@ -9,6 +9,7 @@ engine: Unity
 platforms: "Museum Exhibit."
 tags: Graphics, Unity, IRC
 featured: false
+cover: assets/img/deepstar/deepstar-particles.png
 hue: 220
 links:
   - Documentation: "https://www.lisamoren.com/deepstar"
@@ -37,6 +38,8 @@ DeepStar itself has a pretty long history. It was [a video installation by Lisa 
 DeepStar was originally created and rendered with Unity. Given that I had some experience in Unity, I was assigned to the task, technically making me the lead (and solo) developer on the project. I remember getting handed old drives and being asked to look through them and pulling off the old project assets, starting my journey making this piece.
 
 ## Bringing it into AR
+
+![A visitor viewing DeepStar in Augmented Reality](/home/dax/WebstormProjects/mikow.github.io/assets/img/deepstar/deepstar-exhibit.jpg)
 
 With the assets in hand, I brought them into modern Unity, and converted the assets to the pipeline I was using. 
 

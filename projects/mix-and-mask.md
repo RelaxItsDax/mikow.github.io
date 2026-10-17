@@ -10,6 +10,7 @@ platforms: "Windows, Browser"
 tags: Gameplay, Graphics, Unity, Game Jam
 featured: false
 hue: -10
+cover: assets/img/mix-and-mask/mix-cover.png
 links:
   - itch.io: "https://evanmcrae.itch.io/mix-and-mask"
   - Source: "https://github.com/EvanMcRae/Mix-and-Mask"
@@ -18,9 +19,13 @@ links:
 
 ## Overview
 
+![Gameplay in Mix and Mask](assets/img/mix-and-mask/mix-gameplay-1.png)
+
 Mix and Mask was our team's project for the 2026 Global Game Jam. The theme was Mask. We had 48 hours to develop this project.
 
 ## What I did
+
+![Gameplay in Mix and Mask](assets/img/mix-and-mask/mix-gameplay-2.png)
 
 I did a lot of technical art and graphics work on the project. Specifically, I made:
 

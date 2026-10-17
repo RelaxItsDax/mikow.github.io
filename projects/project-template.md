@@ -9,7 +9,11 @@ engine: Webstorm
 platforms: "Browser"
 tags: Gameplay
 featured: false
-hue: 0
+# The cover image: Can be either a color, cover, youtube video, or local video.
+cover: assets/img/template-img.jpg
+youtube: abc123XYZ <- the youtube tag
+video: assets/img/trailer.mp4
+hue: 0 # Color to associate with this entry.
 links:
   - Source: "https://github.com/RelaxItsDax"
 ---
