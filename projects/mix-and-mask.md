@@ -18,8 +18,20 @@ links:
 
 ## Overview
 
-Yeah bro I made this shit.
+Mix and Mask was our team's project for the 2026 Global Game Jam. The theme was Mask. We had 48 hours to develop this project.
 
 ## What I did
 
-- What did I do?
+I did a lot of technical art and graphics work on the project. Specifically, I made:
+
+- Procedurally animated particles that would play whenever enemies spawned.
+- A stylized fire particle system that was put on fire braziers and torches around the scene.
+- Particle animations for jumping and possessing enemies.
+- The vignette filter that plays whenever you possess something.
+- The pixelation/blur filter on the whole screen.
+
+## Takeaways
+
+Looking back at it, the pixelization filter was not good. I feel like it only took away, and it wasn't nearly as cool as it could have been. I would have needed to work a lot harder to get it into a good space, and it just made everything blurry/muddy.
+
+This is what started my work on rendering pixel art in 3d, as seen in On The Water's Edge. Glad to see it improved there!
