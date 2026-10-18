@@ -9,6 +9,7 @@ engine: Unity
 platforms: "Museum Exhibit."
 tags: Graphics, Unity, IRC
 featured: false
+youtube: JzjuotMR6fA
 cover: assets/img/deepstar/deepstar-particles.png
 hue: 220
 links:
