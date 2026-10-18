@@ -16,6 +16,8 @@
 //     float iScroll       how far the page is scrolled, in viewport heights
 //     vec3  iBackground   the page's --bg colour      } these follow the
 //     vec3  iAccent       the page's --accent colour  } light / dark theme
+//     sampler2D iChannel0 tiling fire noise, grey          } wrap with REPEAT,
+//     sampler2D iChannel1 tiling simplex noise, grey       } see js/background.js
 //
 // While previewing on localhost the file is hot-reloaded on save, and compile
 // errors show up in a box at the bottom of the page.
@@ -148,13 +150,42 @@ float simplex(vec2 p)
     return 70.0 * dot(falloff, vec3(dot(d0, g0), dot(d1, g1), dot(d2, g2)));
 }
 
+// Texture-sampled stand-ins for worley() and simplex() above. They take the
+// same coordinates, so `p` is in noise units and the scale constants convert
+// to texture UVs. The textures don't animate, so move them by offsetting `p`.
+
+// The fire texture's blobs are about the size of worley()'s cells, roughly six
+// to a tile. Its values span 34..255 out of 255, so stretch them to 0..1.
+const float fireTexCells = 6.0;
+const float fireTexLow   = 34.0 / 255.0;
+
+// Wispy noise in 0..1, standing in for worley(p, 0.0).x.
+float fireTex(vec2 p)
+{
+    float value = texture(iChannel0, p / fireTexCells).r;
+    return clamp((value - fireTexLow) / (1.0 - fireTexLow), 0.0, 1.0);
+}
+
+// The simplex texture's features are about twice as large as simplex()'s,
+// and its values only span 22..98 out of 255, so stretch them back to 0..1.
+const float simplexTexScale = 0.5;
+const float simplexTexLow   = 22.0 / 255.0;
+const float simplexTexHigh  = 98.0 / 255.0;
+
+// Smooth noise in 0..1, like 0.5 + 0.5 * simplex(p).
+float simplexTex(vec2 p)
+{
+    float value = texture(iChannel1, p * simplexTexScale).r;
+    return clamp((value - simplexTexLow) / (simplexTexHigh - simplexTexLow), 0.0, 1.0);
+}
+
 float fireNoise(in vec2 p, in float t) {
 
-    float oct2 = worley(p * vec2(0.01) + vec2(0.0, -t * 0.5), t * 0.1).x;
-    float oct3 = worley(p * vec2(0.025) + vec2(0.0, -t * 1.0), t * 0.25).x;
-    float oct4 = worley(p * vec2(0.05) + vec2(0.0, -t * 2.0), t).x;
+    float oct2 = fireTex(p * vec2(0.01) + vec2(0.0, -t * 0.5));
+    float oct3 = fireTex(p * vec2(0.025) + vec2(0.0, -t * 1.0));
+    float oct4 = fireTex(p * vec2(0.05) + vec2(0.0, -t * 2.0));
 
-    float breakup = noise (p * vec2(0.05));
+    float breakup = simplexTex(p * vec2(0.005));
 
     float n = oct2 * 5.0 + oct3 * 2.0 + oct4 * 1.0 + breakup * 3.0;
     n = n / 11.0;
@@ -187,7 +218,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float verticalMaskA = pow(1.0 - 2.0 * pow(abs(fragCoord.x / iResolution.x - centerA), 2.0), 20.0);
     float verticalMaskB = pow(1.0 - 2.0 * pow(abs(fragCoord.x / iResolution.x - centerB), 2.0), 20.0);
 
-    float simplexMask = clamp(simplex(fragCoord * 0.001 + vec2(iTime * 0.1)) * 0.5 + 0.5, 0.0, 1.0);
+    float simplexMask = simplexTex(fragCoord * 0.001 + vec2(iTime * 0.1));
 
     float n = f * simplexMask;
 

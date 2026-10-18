@@ -9,6 +9,12 @@
 
     var SHADER_URL = "shaders/background.frag";
 
+    // Tiling noise textures, bound in order as iChannel0, iChannel1…
+    var TEXTURE_URLS = [
+        "assets/img/shaders/fire_noise_tex.jpeg",
+        "assets/img/shaders/tiling_simplex.png"
+    ];
+
     // Render resolution relative to CSS pixels. 0.5 is cheap and fine for soft
     // shaders; raise towards 1 (or window.devicePixelRatio) for crisp detail.
     var PIXEL_SCALE = 0.5;
@@ -42,6 +48,8 @@
         "uniform float iScroll;",
         "uniform vec3 iBackground;",
         "uniform vec3 iAccent;",
+        "uniform sampler2D iChannel0;",
+        "uniform sampler2D iChannel1;",
         "out vec4 bgFragColor;",
         "#line 1",
         ""
@@ -83,11 +91,40 @@
             throw new Error(log);
         }
         var uniforms = {};
-        ["iResolution", "iTime", "iMouse", "iScroll", "iBackground", "iAccent"].forEach(function (name) {
+        ["iResolution", "iTime", "iMouse", "iScroll", "iBackground", "iAccent", "iChannel0", "iChannel1"].forEach(function (name) {
             uniforms[name] = gl.getUniformLocation(program, name);
         });
         return { program: program, uniforms: uniforms };
     }
+
+    // ---------- Textures ----------
+
+    // Each texture starts as a single mid-grey pixel so the shader can draw
+    // straight away, then the image replaces it once it has downloaded.
+    var textures = TEXTURE_URLS.map(function (url) {
+        var texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([128, 128, 128, 255]));
+
+        var image = new Image();
+        image.onload = function () {
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            // Noise values are data, not colours, so upload them untouched.
+            gl.pixelStorei(gl.UNPACK_COLORSPACE_CONVERSION_WEBGL, gl.NONE);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+            gl.generateMipmap(gl.TEXTURE_2D);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            dirty = true;
+        };
+        image.onerror = function () {
+            console.warn("Background texture could not be loaded:", url);
+        };
+        image.src = url;
+        return texture;
+    });
 
     // ---------- Inputs ----------
 
@@ -151,6 +188,11 @@
         gl.uniform1f(uniforms.iScroll, still ? 0 : window.scrollY / window.innerHeight);
         gl.uniform3fv(uniforms.iBackground, background);
         gl.uniform3fv(uniforms.iAccent, accent);
+        textures.forEach(function (texture, unit) {
+            gl.activeTexture(gl.TEXTURE0 + unit);
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            gl.uniform1i(uniforms["iChannel" + unit], unit);
+        });
         gl.drawArrays(gl.TRIANGLES, 0, 3);
     }
 
