@@ -29,6 +29,35 @@
     var gl = canvas.getContext("webgl2", { antialias: false, alpha: false, powerPreference: "low-power" });
     if (!gl) return;
 
+    // ---------- On / off toggle ----------
+
+    // A button in the header turns the background off for visitors whose
+    // hardware struggles with it. The choice is remembered on this device.
+    var STORAGE_KEY = "background-enabled";
+
+    var enabled = true;
+    try { enabled = window.localStorage.getItem(STORAGE_KEY) !== "false"; } catch (error) {}
+
+    var toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "btn btn-small bg-toggle";
+
+    function applyEnabled() {
+        canvas.hidden = !enabled;
+        toggle.setAttribute("aria-pressed", String(enabled));
+        toggle.textContent = enabled ? "Background: on" : "Background: off";
+        dirty = true;
+    }
+
+    toggle.addEventListener("click", function () {
+        enabled = !enabled;
+        try { window.localStorage.setItem(STORAGE_KEY, String(enabled)); } catch (error) {}
+        applyEnabled();
+    });
+
+    var nav = document.querySelector(".site-header .nav");
+    if (nav) nav.appendChild(toggle);
+
     var VERTEX = [
         "#version 300 es",
         "void main() {",
@@ -156,6 +185,8 @@
 
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    applyEnabled();
+
     // ---------- Render loop ----------
 
     var current = null;
@@ -163,7 +194,7 @@
 
     function frame(now) {
         window.requestAnimationFrame(frame);
-        if (!current) return;
+        if (!current || !enabled) return;
 
         var width = Math.max(1, Math.round(window.innerWidth * PIXEL_SCALE));
         var height = Math.max(1, Math.round(window.innerHeight * PIXEL_SCALE));

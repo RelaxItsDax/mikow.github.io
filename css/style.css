@@ -61,6 +61,11 @@ a { color: inherit; }
 
 /* Full-screen canvas drawn by js/background.js from shaders/background.frag */
 .shader-bg { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; pointer-events: none; }
+.shader-bg[hidden] { display: none; }
+
+/* Header button that turns the shader background on and off */
+.bg-toggle { white-space: nowrap; }
+.bg-toggle[aria-pressed="false"] { color: var(--muted); }
 
 .container { width: 100%; max-width: var(--page); margin-inline: auto; padding-inline: var(--gutter); }
 
