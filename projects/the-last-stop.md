@@ -10,6 +10,7 @@ platforms: "Windows, Linux"
 tags: Gameplay, Graphics, Unity
 featured: true
 cover: assets/img/tls/the-last-stop-cover.png
+youtube: AHz4S9gFhNw
 hue: 270
 links:
   - itch.io: "https://edenemil.itch.io/the-last-stop"
