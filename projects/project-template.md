@@ -11,7 +11,7 @@ tags: Gameplay
 featured: false
 # The cover image: Can be either a color, cover, youtube video, vimeo video, or local video.
 cover: assets/img/template-img.jpg
-youtube: abc123XYZ <- the youtube tag
+youtube: abc123XYZ # <- the youtube tag
 vimeo: https://vimeo.com/76979871
 video: assets/img/trailer.mp4
 hue: 0 # Color to associate with this entry.
